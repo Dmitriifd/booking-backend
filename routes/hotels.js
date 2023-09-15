@@ -1,5 +1,5 @@
-import express from "express";
-import Hotel from "../models/Hotel.js";
+import express from 'express';
+import Hotel from '../models/Hotel.js';
 const router = express.Router();
 
 // CREATE
@@ -10,7 +10,7 @@ router.post('/', async (req, res, next) => {
     const savedHotel = await newHotel.save();
     res.status(200).json(savedHotel);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
@@ -24,7 +24,7 @@ router.put('/:id', async (req, res, next) => {
     );
     res.status(200).json(updatedHotel);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
@@ -34,7 +34,7 @@ router.delete('/:id', async (req, res, next) => {
     await Hotel.findByIdAndDelete(req.params.id);
     res.status(200).json('Hotel has been deleted.');
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
@@ -44,17 +44,17 @@ router.get('/find/:id', async (req, res, next) => {
     const hotel = await Hotel.findById(req.params.id);
     res.status(200).json(hotel);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
 // GET ALL
 router.get('/', async (req, res, next) => {
   try {
-    const hotels = await Hotel.find()
+    const hotels = await Hotel.find();
     res.status(200).json(hotels);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
