@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import hotelsRoute from './routes/hotels.js';
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,8 @@ mongoose.connection.on('disconnected', () => {
 app.use(cors())
 app.use(cookieParser())
 app.use(express.json());
+
+app.use('/api/hotels', hotelsRoute);
 
 app.listen(3002, () => {
   connect();
