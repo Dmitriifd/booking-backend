@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import hotelsRoute from './routes/hotels.js';
+import authRoute from './routes/auth.js';
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,7 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json());
 
+app.use('/api/auth', authRoute);
 app.use('/api/hotels', hotelsRoute);
 
 // error handling
