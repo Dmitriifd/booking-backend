@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import hotelsRoute from './routes/hotels.js';
 import authRoute from './routes/auth.js';
+import usersRoute from './routes/users.js';
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoute);
 app.use('/api/hotels', hotelsRoute);
+app.use('/api/users', usersRoute);
 
 // error handling
 app.use((err, req, res, next) => {
