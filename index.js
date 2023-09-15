@@ -6,10 +6,11 @@ import cookieParser from 'cookie-parser';
 import hotelsRoute from './routes/hotels.js';
 import authRoute from './routes/auth.js';
 import usersRoute from './routes/users.js';
+import roomsRoute from './routes/rooms.js';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3005
+const PORT = process.env.PORT || 3005;
 
 const connect = async () => {
   try {
@@ -25,13 +26,14 @@ mongoose.connection.on('disconnected', () => {
 });
 
 //middlewares
-app.use(cors())
-app.use(cookieParser())
+app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/auth', authRoute);
 app.use('/api/hotels', hotelsRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/rooms', roomsRoute);
 
 // error handling
 app.use((err, req, res, next) => {
